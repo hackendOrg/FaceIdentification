@@ -1,24 +1,39 @@
 import cv2
 from name_to_id import DataHandler
 
+# create image recronizer
 recognizer = cv2.face.LBPHFaceRecognizer_create()
+# load the training data
 recognizer.read('trainer/trainer.yml')
-cascadePath = "Classifiers/face.xml"
-faceCascade = cv2.CascadeClassifier(cascadePath)
-path = 'data_set'
+# classifier path
+classifierPath = "Classifiers/face.xml"
+# new face classifier
+faceClassifier = cv2.CascadeClassifier(classifierPath)
+# load data
 data_handler = DataHandler()
 cam = cv2.VideoCapture(0)
 font = cv2.FONT_HERSHEY_SIMPLEX  # Creates a font
+OFFSET = 50
+
 while True:
-    ret, im = cam.read()
-    gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
-    faces = faceCascade.detectMultiScale(gray, scaleFactor=1.2, minNeighbors=5, minSize=(100, 100),
-                                         flags=cv2.CASCADE_SCALE_IMAGE)
+    # take a snapshot
+    ret, image = cam.read()
+    # convert to gray matrix
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    # detect face from image
+    faces = faceClassifier.detectMultiScale(gray, scaleFactor=1.2, minNeighbors=5, minSize=(100, 100),
+                                            flags=cv2.CASCADE_SCALE_IMAGE)
+    # for every axis in face
     for (x, y, w, h) in faces:
-        nbr_predicted, conf = recognizer.predict(gray[y:y + h, x:x + w])
-        cv2.rectangle(im, (x - 50, y - 50), (x + w + 50, y + h + 50), (225, 0, 0), 2)
-        nbr_predicted = data_handler.get_name_by_id(nbr_predicted)
-        cv2.putText(im, str(nbr_predicted) + "--" + str(conf), (x, y + h), font, 1,
+        # make a prediction base on trainer data
+        predicted, conf = recognizer.predict(gray[y:y + h, x:x + w])
+        # draw a rectangle based on offset
+        cv2.rectangle(image, (x - OFFSET, y - OFFSET), (x + w + OFFSET, y + h + OFFSET), (225, 0, 0), 2)
+        # convert prediction id to a name based on json
+        predicted = data_handler.get_name_by_id(predicted)
+        # put text on image
+        cv2.putText(image, str(predicted) + "--" + str(conf), (x, y + h), font, 1,
                     (0, 0, 255), 2)  # Draw the text
-        cv2.imshow('im', im)
+        # show the image
+        cv2.imshow('im', image)
         cv2.waitKey(10)

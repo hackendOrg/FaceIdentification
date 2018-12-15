@@ -1,6 +1,7 @@
 import cv2
 import os
 from name_to_id import DataHandler
+
 # Create camera entity
 camera = cv2.VideoCapture(0)
 
@@ -12,7 +13,8 @@ data_handler = DataHandler()
 PICTURES_NUMBER = 20
 index = 0
 PIXELS_OFFSET = 50
-name=raw_input('enter your first name : ')
+name = raw_input('enter your first name : ')
+# append a integer id to a name
 data_handler.put_name(name)
 if not os.path.exists("data_set"):
     os.mkdir("data_set")
@@ -34,5 +36,5 @@ while index < PICTURES_NUMBER:
 camera.release()
 # exit window
 cv2.destroyAllWindows()
-
+# printing to the json file
 data_handler.to_json()
