@@ -48,7 +48,7 @@ images, labels = get_images_and_labels(path)
 # train
 if not os.path.exists("trainer"):
     os.mkdir("trainer")
-# trainig
+# training
 recognizer.train(images, np.array(labels))
 # save model
 recognizer.save('trainer/trainer.yml')
