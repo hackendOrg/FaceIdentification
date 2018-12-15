@@ -27,11 +27,14 @@ while index < PICTURES_NUMBER:
     faces = detector.detectMultiScale(gray_matrix, scaleFactor=1.2, minNeighbors=5, minSize=(100, 100),
                                       flags=cv2.CASCADE_SCALE_IMAGE)
     # runs for every axis
-    for (x, y, w, h) in faces:
+    for (x_axis, y_axis, w_axis, h_axis) in faces:
         index += 1
+        curr_file_name = "data_set/" + name + '.' + str(index) + ".jpg"
         # writes the image , jpg < png
-        cv2.imwrite("data_set/" + name + '.' + str(index) + ".jpg",
-                    gray_matrix[y - PIXELS_OFFSET:y + h + PIXELS_OFFSET, x - PIXELS_OFFSET:x + w + PIXELS_OFFSET])
+
+        cv2.imwrite(curr_file_name,
+                    gray_matrix[y_axis - PIXELS_OFFSET:y_axis + h_axis + PIXELS_OFFSET,
+                    x_axis - PIXELS_OFFSET:x_axis + w_axis + PIXELS_OFFSET])
 # close
 camera.release()
 # exit window
