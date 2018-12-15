@@ -46,10 +46,10 @@ def get_images_and_labels(path):
 images, labels = get_images_and_labels(path)
 
 # train
-if not os.path.exists("trainer"):
-    os.mkdir("trainer")
+if not os.path.exists("analyzer"):
+    os.mkdir("analyzer")
 # training
 recognizer.train(images, np.array(labels))
 # save model
-recognizer.save('trainer/trainer.yml')
+recognizer.save('analyzer/analyzer.yml')
 cv2.destroyAllWindows()
