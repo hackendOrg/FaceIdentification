@@ -1,7 +1,7 @@
 import cv2
 from name_to_id import DataHandler
 
-# create image recronizer
+# create image recognizer
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 # load the training data
 recognizer.read('trainer/trainer.yml')
