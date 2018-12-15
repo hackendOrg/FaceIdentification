@@ -6,7 +6,7 @@ Face Recognition tutorial reference for http://thecodacus.com
 ### Prerequisites
 * Python 2.x
 * pip install image
-* pip install opencv-python
+* pip install opencv-contrib-python
 
 ### Installing
 
