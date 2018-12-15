@@ -1,12 +1,12 @@
 # Simple OpenCV Face Recognition in Python
 
 
-Face Recognition tutorial refference for http://thecodacus.com 
+Face Recognition tutorial reference for http://thecodacus.com
 
 ### Prerequisites
 * Python 2.x
-* OpenCV 2.x
-* Image
+* pip install image
+* pip install opencv-python
 
 ### Installing
 
@@ -18,7 +18,3 @@ Face Recognition tutorial refference for http://thecodacus.com
 * run the dataSetGenerator.py and enter a unique id to create face samples with your face
 * run trainer.py
 * run detector.py
-
-## Authors
-
-* **[Anirban Kar](http://thecodacus.com/author/admin/)**

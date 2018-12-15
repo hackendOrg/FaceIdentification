@@ -18,12 +18,10 @@ while True:
         cv2.rectangle(im, (x - 50, y - 50), (x + w + 50, y + h + 50), (225, 0, 0), 2)
         if nbr_predicted == 1:
             nbr_predicted = 'Michael'
-        # elif nbr_predicted == 2:
-        #     nbr_predicted = 'ilay'
+        elif nbr_predicted == 2:
+            nbr_predicted = 'Or'
         elif nbr_predicted == 3:
-            nbr_predicted = 'ruslan'
-        else:
-            nbr_predicted = 'FAIL'
+            nbr_predicted = 'Asaf'
         cv2.putText(im, str(nbr_predicted) + "--" + str(conf), (x, y + h), font, 1,
                     (0, 0, 255), 2)  # Draw the text
         cv2.imshow('im', im)
