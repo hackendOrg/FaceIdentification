@@ -7,6 +7,7 @@ Face Recognition tutorial reference for http://thecodacus.com
 * Python 2.x
 * pip install image
 * pip install opencv-contrib-python
+* pip install HackendUtils
 
 ### Installing
 
